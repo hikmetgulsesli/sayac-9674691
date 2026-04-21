@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAYAÇ - Maksimum Limit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#d2bbff",
+                    "inverse-primary": "#732ee4",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "outline-variant": "#4a4455",
+                    "background": "#0b1326",
+                    "surface-tint": "#d2bbff",
+                    "inverse-on-surface": "#283044",
+                    "on-secondary": "#003640",
+                    "outline": "#958da1",
+                    "surface": "#0b1326",
+                    "on-secondary-fixed": "#001f26",
+                    "tertiary-container": "#a15100",
+                    "on-error": "#690005",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "secondary-fixed": "#acedff",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary-fixed": "#301400",
+                    "primary-fixed-dim": "#d2bbff",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdcc6",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#ffb784",
+                    "on-secondary-container": "#00424e",
+                    "on-primary-fixed-variant": "#5a00c6",
+                    "on-background": "#dae2fd",
+                    "inverse-surface": "#dae2fd",
+                    "surface-variant": "#2d3449",
+                    "on-primary-container": "#ede0ff",
+                    "surface-bright": "#31394d",
+                    "on-tertiary": "#4f2500",
+                    "on-primary-fixed": "#25005a",
+                    "secondary": "#4cd7f6",
+                    "on-tertiary-container": "#ffe0cd",
+                    "surface-container": "#171f33",
+                    "on-surface": "#dae2fd",
+                    "secondary-container": "#03b5d3",
+                    "on-primary": "#3f008e",
+                    "surface-container-low": "#131b2e",
+                    "surface-dim": "#0b1326",
+                    "surface-container-lowest": "#060e20",
+                    "error-container": "#93000a",
+                    "primary-fixed": "#eaddff",
+                    "on-tertiary-fixed-variant": "#713700",
+                    "primary-container": "#7c3aed",
+                    "surface-container-highest": "#2d3449",
+                    "on-surface-variant": "#ccc3d8",
+                    "tertiary": "#ffb784"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Ambient depth enhancements */
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(34, 42, 61, 0.4) 0%, rgba(19, 27, 46, 0.2) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-[#0b1326] text-on-surface font-body h-screen flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Atmospheric noise texture overlay -->
+<div class="pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-screen bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')]"></div>
+<!-- Web Shell: SideNavBar -->
+<nav class="hidden md:flex flex-col w-64 h-screen bg-[#0b1326] border-r border-[#4a4455]/15 transition-all ease-in-out z-20 relative">
+<div class="p-8">
+<h1 class="text-[#7C3AED] font-black text-2xl tracking-tighter uppercase">Kinetic Sayaç</h1>
+<p class="font-['Inter'] text-xs tracking-[0.2em] text-[#dae2fd]/40 mt-2 uppercase">Minimalist Takip</p>
+</div>
+<div class="flex flex-col mt-4">
+<!-- Active State: Sayaç -->
+<a class="flex items-center px-8 py-5 text-[#7C3AED] border-r-2 border-[#7C3AED] bg-surface-container-low/50 transition-colors" href="#">
+<span class="material-symbols-outlined mr-4 text-xl">add_circle</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Sayaç</span>
+</a>
+<!-- Inactive State: Geçmiş -->
+<a class="flex items-center px-8 py-5 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-surface-container-low/20 transition-all ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-4 text-xl group-hover:scale-110 transition-transform">history</span>
+<span class="font-['Inter'] text-sm tracking-wide">Geçmiş</span>
+</a>
+</div>
+</nav>
+<!-- Canvas Area -->
+<div class="flex-1 flex flex-col relative h-full bg-surface-container-lowest/30">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-6 h-20 bg-[#0b1326]/80 backdrop-blur-md z-10 sticky top-0">
+<div class="md:hidden text-xl font-bold tracking-tighter text-[#dae2fd]">SAYAÇ</div>
+<div class="hidden md:block flex-1"></div>
+<button class="text-[#7C3AED] hover:bg-[#161f31] transition-colors p-3 rounded-[12px] flex items-center justify-center active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center p-6 relative z-0 overflow-y-auto pb-32 md:pb-6">
+<!-- Ambient Light Source -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-error/5 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- The Monolith Counter -->
+<div class="relative flex flex-col items-center group z-10 mb-12">
+<div class="text-[6rem] sm:text-[8rem] md:text-[12rem] font-black text-error tracking-tighter leading-none select-none drop-shadow-[0_0_64px_rgba(255,180,171,0.15)] transition-all">
+                    999999
+                </div>
+<div class="mt-6 font-['JetBrains_Mono'] text-error/60 text-sm md:text-base tracking-[0.3em] uppercase bg-error/10 px-4 py-1.5 rounded-[8px] border border-error/20">
+                    Kapasite Sınırı
+                </div>
+</div>
+<!-- Web Interactive Controls Panel -->
+<div class="hidden md:flex glass-panel p-3 rounded-2xl gap-3 shadow-[0_32px_64px_rgba(218,226,253,0.03)] border border-outline-variant/20 z-10">
+<button class="flex items-center justify-center gap-2 px-8 py-5 rounded-xl bg-surface-container-highest text-on-surface hover:bg-surface-bright transition-colors group">
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">remove</span>
+<span class="font-['Inter'] text-sm font-medium">Azalt</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-8 py-5 rounded-xl text-primary hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">restart_alt</span>
+<span class="font-['Inter'] text-sm font-medium">Sıfırla</span>
+</button>
+<!-- Target Disabled Button with Tooltip (Web) -->
+<div class="relative flex flex-col items-center">
+<!-- Limit Warning Tooltip -->
+<div class="absolute bottom-full mb-4 flex flex-col items-center z-50 animate-[pulse_2s_ease-in-out_infinite]">
+<div class="bg-error-container text-on-error-container text-sm font-semibold px-5 py-2.5 rounded-xl whitespace-nowrap shadow-[0_16px_32px_rgba(255,180,171,0.15)] border border-error/20">
+                            Maksimum sınıra ulaşıldı
+                        </div>
+<div class="w-4 h-4 bg-error-container rotate-45 -mt-2.5 rounded-sm border-r border-b border-error/20"></div>
+</div>
+<button class="flex items-center justify-center gap-2 px-10 py-5 rounded-xl bg-surface-container-low text-on-surface-variant/30 cursor-not-allowed border border-outline-variant/10" disabled="">
+<span class="material-symbols-outlined">add</span>
+<span class="font-['Inter'] text-sm font-medium">Artır</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Mobile Shell: BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 md:hidden bg-[#0b1326]/80 backdrop-blur-xl rounded-t-3xl shadow-[0_-8px_32px_rgba(218,226,253,0.06)] border-t border-outline-variant/10">
+<!-- Target Disabled Button with Tooltip (Mobile) -->
+<div class="relative flex flex-col items-center w-full max-w-[80px]">
+<!-- Limit Warning Tooltip -->
+<div class="absolute bottom-full mb-5 flex flex-col items-center z-50">
+<div class="bg-error-container text-on-error-container text-xs font-bold px-4 py-2 rounded-lg whitespace-nowrap shadow-[0_8px_24px_rgba(255,180,171,0.2)]">
+                        Maksimum sınıra ulaşıldı
+                    </div>
+<div class="w-3 h-3 bg-error-container rotate-45 -mt-1.5 rounded-sm"></div>
+</div>
+<button class="flex flex-col items-center justify-center text-[#dae2fd]/20 cursor-not-allowed w-full" disabled="">
+<span class="material-symbols-outlined mb-1.5 text-2xl">add</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest">Artır</span>
+</button>
+</div>
+<button class="flex flex-col items-center justify-center text-[#dae2fd]/40 hover:text-[#7C3AED] transition-colors w-full max-w-[80px] active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1.5 text-2xl">remove</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest">Azalt</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#dae2fd]/40 hover:text-[#7C3AED] transition-colors w-full max-w-[80px] active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1.5 text-2xl">restart_alt</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest">Sıfırla</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#dae2fd]/40 hover:text-[#7C3AED] transition-colors w-full max-w-[80px] active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1.5 text-2xl">history</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest">Geçmiş</span>
+</button>
+</nav>
+</div>
+</body></html>

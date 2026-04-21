@@ -1,0 +1,253 @@
+# ÜRÜN GEREKSİNİMLERİ DOKÜMANI (PRD)
+## Sayaç Uygulaması — sayac-9674691
+
+---
+
+## 1. Genel Bakış
+
+Sayaç Uygulaması, kullanıcıların sayısal bir değeri artırma, azaltma ve sıfırlama işlemleriyle yönetmelerini sağlayan minimal, hızlı ve erişilebilir bir web uygulamasıdır. React 18 + Vite + TypeScript + Tailwind CSS ile geliştirilmiş tek sayfalık (SPA) bir uygulamadır. Tüm arayüz Türkçe'dir. Değer ve geçmiş bilgisi tarayıcıda localStorage ile kalıcı olarak saklanır; sayfa yenilendiğinde veriler kaybolmaz. Dark mode desteği ile kullanıcı tercihine göre aydınlık/koyu tema geçişi yapılabilir.
+
+Hedef kitle: Günlük kullanım senaryoları için basit sayaç ihtiyacı olan herkes — öğrenciler, profesyoneller, hobbyistler.
+
+---
+
+## 2. Hedefler
+
+- Kullanıcı sayısal bir değeri 1 birim artırabilmeli
+- Kullanıcı sayısal bir değeri 1 birim azaltabilmeli
+- Kullanıcı sayısal değeri sıfırlayabilmeli (0'a getirme)
+- Son 10 yapılan değişiklik kronolojik sırayla görüntülenmeli
+- Değişiklik geçmişi: her işlem için tarih/saat, işlem tipi, sonuç değeri gösterilmeli
+- Dark mode toggle ile aydınlık/koyu tema geçişi yapılabilmeli
+- Tema tercihi localStorage'da saklanmalı
+- Sayaç değeri localStorage'da saklanmalı
+- İlk yükleme 2 saniyeden kısa olmalı
+- Mobil uyumlu tasarım (320px – 1920px)
+- Klavye navigasyonu tam destekli (Erişilebilirlik)
+
+---
+
+## 3. Tech Stack Detayı
+
+| Katman | Seçim |
+|--------|-------|
+| Framework | React 18.3 |
+| Build | Vite 5.x |
+| Language | TypeScript 5.x |
+| Styling | Tailwind CSS 3.x |
+| Icons | Lucide React |
+| State | React useState + useReducer |
+| Storage | localStorage (değer + geçmiş + tema) |
+| Routing | Yok (tek sayfa) |
+
+---
+
+## 4. Fonksiyonel Gereksinimler
+
+### 4.1 Sayaç Değeri
+- Başlangıç değeri: 0
+- Minimum değer: -999999
+- Maksimum değer: 999999
+- Artır butonu: değeri +1 yapar
+- Azalt butonu: değeri -1 yapar
+- Sıfırla butonu: değeri 0 yapar
+- Değer değiştiğinde otomatik localStorage'a kayıt
+
+### 4.2 Değişiklik Geçmişi
+- Son 10 değişiklik listelenir (FIFO — en eski silinir)
+- Her kayıt: tarih/saat (DD.MM.YYYY HH:mm:ss), işlem ("Artır", "Azalt", "Sıfırla"), sonuç değeri
+- Geçmiş listesi ters kronolojik sırayla (en yeni üstte) gösterilir
+- Boş durum mesajı: "Henüz işlem yapılmadı"
+
+### 4.3 Dark Mode
+- Toggle butonu ile açma/kapama
+- Aktif tema: sayfa başlığında veya buton içinde gösterilir (Güneş/Ay ikonu)
+- Tercih localStorage'da saklanır
+- İlk ziyarette sistem tercihine göre otomatik seçim
+
+### 4.4 Hata Durumları
+- Değer maksimum/minimum sınıra ulaştığında ilgili buton devre dışı bırakılır ve tooltip ile bilgi verilir
+- localStorage erişim hatası: konsola yazılır, uygulama çalışmaya devam eder (değer bellekte tutulur)
+
+---
+
+## 5. Veri Modeli
+
+### 5.1 CounterState
+```typescript
+interface CounterState {
+  value: number;        // -999999 .. 999999
+  history: HistoryEntry[]; // max 10 kayıt
+  theme: 'light' | 'dark';
+}
+```
+
+### 5.2 HistoryEntry
+```typescript
+interface HistoryEntry {
+  id: string;           // UUID
+  timestamp: string;    // ISO 8601
+  action: 'increment' | 'decrement' | 'reset';
+  resultValue: number;  // işlem sonrası değer
+}
+```
+
+### 5.3 localStorage Keys
+| Key | Tip | Açıklama |
+|-----|-----|---------|
+| `sayac-9674691:value` | number | Sayaç değeri |
+| `sayac-9674691:history` | HistoryEntry[] | Değişiklik geçmişi |
+| `sayac-9674691:theme` | 'light' \| 'dark' | Tema tercihi |
+
+---
+
+## 6. UI/UX Gereksinimler
+
+### 6.1 Design System
+
+**Aesthetic:** Minimal — temiz çizgiler, bol beyaz alan, odak noktası sayaç rakamı.
+
+**Renk Paleti:**
+
+| Rol | Light Mode | Dark Mode |
+|-----|-----------|-----------|
+| Primary | #7C3AED (violet-600) | #8B5CF6 (violet-500) |
+| Secondary | #06B6D4 (cyan-500) | #22D3EE (cyan-400) |
+| Background | #FFFFFF | #0F172A (slate-900) |
+| Surface | #F8FAFC (slate-50) | #1E293B (slate-800) |
+| Text Primary | #0F172A (slate-900) | #F8FAFC (slate-50) |
+| Text Secondary | #64748B (slate-500) | #94A3B8 (slate-400) |
+| Border | #E2E8F0 (slate-200) | #334155 (slate-700) |
+| Success | #10B981 (emerald-500) | #34D399 (emerald-400) |
+| Error | #EF4444 (red-500) | #F87171 (red-400) |
+
+**Tipografi:**
+- Heading: Inter (Google Fonts), 700, sayaç rakamı 6xl–8xl
+- Body: Inter, 400/500
+- Monospace (geçmiş zaman damgası): JetBrains Mono
+
+**Icon Library:** Lucide React (Sun, Moon, Plus, Minus, RotateCcw, Clock)
+
+**Spacing Scale:** 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 px
+
+**Border Radius:** 8px (butonlar), 12px (kartlar), 16px (modal)
+
+**Shadow:**
+- Light: `0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)`
+- Dark surface: `0 4px 6px rgba(0,0,0,0.3)`
+
+### 6.2 Bileşenler
+
+**Sayaç Gösterge Alanı:**
+- Büyük rakam ortalanmış, 7–8xl font
+- Hafif zemin renkli kart içinde
+- Değer değiştiğinde hafif pulse animasyonu
+
+**Butonlar:**
+- Artır: Violet arka plan, + ikonu + "Artır" metni
+- Azalt: Cyan arka plan, − ikonu + "Azalt" metni  
+- Sıfırla: Ghost/outline stil, döngü ikonu + "Sıfırla" metni
+- Dark mode toggle: Sağ üst köşede güneş/ay ikonlu capsule buton
+- Tüm butonlar: min 44×44px touch hedefi, focus ring, disabled state
+
+**Geçmiş Listesi:**
+- Yatay çizgi ile ayrılmış liste
+- Sol: tarih/saat (küçük, soluk)
+- Orta: işlem metni + sonuç değeri
+- Sağ: işlem tipine göre renkli badge (+1, -1, ↺)
+- Boş durum: ortalanmış ileti + saat ikonu
+
+---
+
+## 7. Non-Functional Requirements
+
+### 7.1 Performans
+- İlk yükleme (Lighthouse): < 2 saniye
+- Time to Interactive: < 1.5 saniye
+- Bundle size hedefi: < 150 KB (gzip)
+- Buton tıklama → UI güncelleme: < 50ms
+
+### 7.2 Erişilebilirlik (WCAG 2.1 AA)
+- Tüm butonlar `aria-label` ile etiketlenmiş
+- Sayaç değeri `aria-live="polite"` bölge içinde
+- Klavye: Tab ile navigasyon, Enter/Space ile tıklama
+- Kontrast oranı: metin ≥ 7:1, büyük metin ≥ 4.5:1
+- Focus state: tüm interactive elementlerde görünür focus ring
+- Touch hedefleri: ≥ 44×44px
+
+### 7.3 Tarayıcı Desteği
+- Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- iOS Safari 14+, Android Chrome 90+
+- Responsive: 320px (mobil) → 1920px (masaüstü)
+
+### 7.4 SEO / Meta
+- Title: "Sayaç — sayac-9674691"
+- Description: basit sayaç uygulaması
+- Lang: tr
+
+---
+
+## 8. Proje Yapısı
+
+```
+sayac-9674691/
+├── src/
+│   ├── components/
+│   │   ├── Counter.tsx        # Ana sayaç bileşeni
+│   │   ├── CounterButton.tsx   # Artır/Azalt/Sıfırla butonları
+│   │   ├── HistoryList.tsx    # Geçmiş liste bileşeni
+│   │   ├── ThemeToggle.tsx    # Dark mode toggle
+│   │   └── HistoryEntry.tsx   # Tek geçmiş satırı
+│   ├── hooks/
+│   │   ├── useCounter.ts      # Sayaç state + localStorage
+│   │   └── useTheme.ts        # Tema state + localStorage
+│   ├── types/
+│   │   └── index.ts           # TypeScript tipleri
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css              # Tailwind + custom CSS
+├── public/
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── tailwind.config.js
+└── postcss.config.js
+```
+
+---
+
+## 9. Window State (dogfood / testing)
+
+```typescript
+window.app = {
+  state: 'idle',          // 'idle' | 'loading' | 'error'
+  counter: {
+    value: number,
+    history: HistoryEntry[],
+    theme: 'light' | 'dark'
+  },
+  version: '1.0.0'
+}
+```
+
+---
+
+## 10. Ekranlar
+
+| # | Ekran Adı | Tür | Açıklama |
+|---|-----------|-----|----------|
+| 1 | Ana Sayfa | counter-main | Büyük sayaç rakamı, artır/azalt/sıfırla butonları, dark mode toggle, değişiklik geçmişi listesi |
+| 2 | Geçmiş Boş Durumu | empty-state | Hiç işlem yapılmadığında gösterilen rehber mesajlı boş durum ekranı |
+| 3 | Limit Uyarı Tooltip | tooltip | Sayaç değeri max/min sınıra ulaştığında buton üzerinde gösterilen bilgi tooltip'i |
+
+Generate a SEPARATE screen design for EVERY page, view, modal, dialog, tab panel, and settings screen described in this PRD. Do NOT skip ANY screen — even if it seems minor.
+
+MANDATORY SCREENS:
+- If the PRD mentions "settings" or "ayarlar" → generate a Settings screen
+- If the PRD mentions tabs or bottom navigation → generate EACH tab view as a separate screen
+- If the PRD mentions modals (statistics, help, share, confirmation) → generate each as a separate screen
+- If the PRD mentions error states, empty states, loading states → generate those too
+- Generate at least as many screens as there are distinct views/pages/modals in the PRD
+
+All visible text must be in Turkish. Use a dark, modern theme.

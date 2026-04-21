@@ -1,0 +1,37 @@
+# ÜRÜN GEREKSİNİMLERİ DOKÜMANI (PRD)
+## Sayaç Uygulaması — sayac-9674691
+
+---
+
+## 1. Genel Bakış
+Sayaç Uygulaması, kullanıcıların sayısal bir değeri artırma, azaltma ve sıfırlama işlemleriyle yönetmelerini sağlayan minimal, hızlı ve erişilebilir bir web uygulamasıdır. React 18 + Vite + TypeScript + Tailwind CSS ile geliştirilmiş tek sayfalık (SPA) bir uygulamadır. Tüm arayüz Türkçe'dir. Değer ve geçmiş bilgisi tarayıcıda localStorage ile kalıcı olarak saklanır.
+
+## 2. Hedefler
+- Artırma, Azaltma, Sıfırlama (+1, -1, 0)
+- Son 10 işlem geçmişi (Kronolojik)
+- Dark mode desteği (localStorage kayıtlı)
+- Mobil uyumlu (320px - 1920px)
+- Erişilebilirlik (WCAG 2.1 AA)
+
+## 6. UI/UX Gereksinimler
+### 6.1 Design System
+**Renk Paleti:**
+- Primary: #7C3AED (violet-600)
+- Secondary: #06B6D4 (cyan-500)
+- Background: #FFFFFF / #0F172A
+- Text: #0F172A / #F8FAFC
+
+**Tipografi:**
+- Heading: Inter, 700, Sayaç: 6xl-8xl
+- Monospace: JetBrains Mono (Geçmiş için)
+
+**Bileşenler:**
+- Büyük sayaç rakamı (Pulse animasyonlu)
+- Kontrol butonları (Violet, Cyan, Ghost)
+- Geçmiş listesi (Badge destekli)
+- Dark mode toggle (Güneş/Ay ikonlu)
+
+## 10. Ekranlar
+1. **Ana Sayfa:** Sayaç, butonlar, geçmiş listesi.
+2. **Geçmiş Boş Durumu:** İşlem yokken gösterilen rehber mesajı.
+3. **Limit Uyarı Tooltip:** Max/Min sınıra ulaşıldığında gösterilen uyarı.

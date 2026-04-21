@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAYAÇ - Ana Sayfa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#d2bbff",
+                        "inverse-primary": "#732ee4",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "outline-variant": "#4a4455",
+                        "background": "#0b1326",
+                        "surface-tint": "#d2bbff",
+                        "inverse-on-surface": "#283044",
+                        "on-secondary": "#003640",
+                        "outline": "#958da1",
+                        "surface": "#0b1326",
+                        "on-secondary-fixed": "#001f26",
+                        "tertiary-container": "#a15100",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "secondary-fixed": "#acedff",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#301400",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdcc6",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "on-secondary-container": "#00424e",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "on-background": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-variant": "#2d3449",
+                        "on-primary-container": "#ede0ff",
+                        "surface-bright": "#31394d",
+                        "on-tertiary": "#4f2500",
+                        "on-primary-fixed": "#25005a",
+                        "secondary": "#4cd7f6",
+                        "on-tertiary-container": "#ffe0cd",
+                        "surface-container": "#171f33",
+                        "on-surface": "#dae2fd",
+                        "secondary-container": "#03b5d3",
+                        "on-primary": "#3f008e",
+                        "surface-container-low": "#131b2e",
+                        "surface-dim": "#0b1326",
+                        "surface-container-lowest": "#060e20",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#eaddff",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "primary-container": "#7c3aed",
+                        "surface-container-highest": "#2d3449",
+                        "on-surface-variant": "#ccc3d8",
+                        "tertiary": "#ffb784"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            color: #dae2fd;
+        }
+    </style>
+</head>
+<body class="font-body antialiased min-h-screen flex flex-col md:flex-row relative">
+<!-- SideNavBar (WEB) -->
+<nav class="hidden md:flex flex-col w-64 h-screen bg-[#0b1326] font-['Inter'] text-sm tracking-wide h-full border-r border-[#4a4455]/15 shrink-0 sticky top-0">
+<div class="p-8">
+<h1 class="text-[#7C3AED] font-black text-2xl tracking-tighter uppercase">Kinetic Sayaç</h1>
+<p class="text-[#dae2fd]/50 text-xs mt-1 font-mono uppercase tracking-widest">Minimalist Takip</p>
+</div>
+<div class="flex-1 px-4 space-y-2 mt-8">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-surface-container-highest text-[#7C3AED] border-r-2 border-[#7C3AED] transition-all ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-medium">Sayaç</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-[#dae2fd]/50 hover:text-[#dae2fd] transition-all ease-in-out" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-medium">Geçmiş</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col relative w-full pb-24 md:pb-0">
+<!-- TopNavBar (MOBILE/WEB Hybrid Header) -->
+<header class="flex justify-between items-center w-full px-6 h-16 bg-[#0b1326] font-['Inter'] font-medium docked full-width top-0 sticky z-40 bg-[#161f31]/50 backdrop-blur-md">
+<div class="md:hidden">
+<h1 class="text-xl font-bold tracking-tighter text-[#dae2fd]">SAYAÇ</h1>
+</div>
+<div class="hidden md:block"></div> <!-- Spacer for web -->
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-[#dae2fd] opacity-60 hover:bg-[#161f31] transition-colors Active: scale-95 duration-150 ml-auto">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</header>
+<!-- Canvas -->
+<div class="flex-1 flex flex-col lg:flex-row p-6 md:p-12 gap-12 max-w-7xl mx-auto w-full">
+<!-- Left/Top: The Monolith Counter -->
+<div class="flex-1 flex flex-col items-center lg:items-start justify-center relative">
+<!-- Ambient Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-container rounded-full mix-blend-screen filter blur-[100px] opacity-20 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center lg:items-start">
+<p class="text-outline uppercase tracking-[0.2em] text-sm font-semibold mb-8">Aktif Değer</p>
+<!-- The Number -->
+<div class="text-[8rem] md:text-[12rem] font-bold text-primary leading-none tracking-tighter mb-16 drop-shadow-[0_0_40px_rgba(210,187,255,0.1)]">
+                        42
+                    </div>
+<!-- Actions -->
+<div class="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
+<button class="flex-1 lg:flex-none px-8 py-5 rounded-xl bg-primary-container text-on-primary-container font-semibold tracking-wide hover:bg-inverse-primary transition-all active:scale-95 shadow-[0_8px_32px_rgba(124,58,237,0.2)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined font-bold">add</span>
+                            Artır
+                        </button>
+<button class="flex-1 lg:flex-none px-8 py-5 rounded-xl bg-secondary-container text-on-secondary-container font-semibold tracking-wide hover:bg-secondary transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined font-bold">remove</span>
+                            Azalt
+                        </button>
+<button class="flex-1 lg:flex-none px-8 py-5 rounded-xl border border-outline-variant text-on-surface hover:bg-surface-container-highest transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">restart_alt</span>
+                            Sıfırla
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right/Bottom: The Ledger (History) -->
+<div class="w-full lg:w-[400px] flex flex-col bg-surface-container-low rounded-2xl p-6 border border-outline-variant/15 relative overflow-hidden">
+<h2 class="text-xl font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                    İşlem Geçmişi
+                </h2>
+<div class="flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar flex-1 max-h-[614px] lg:max-h-none">
+<!-- Ledger Item -->
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10 last:border-0 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm font-bold">add</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface group-hover:text-primary transition-colors">Artırma</p>
+<p class="text-xs font-mono text-outline mt-1">41 → 42</p>
+</div>
+</div>
+<span class="font-mono text-sm text-on-surface-variant">14:22:05</span>
+</div>
+<!-- Ledger Item -->
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10 last:border-0 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm font-bold">add</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface group-hover:text-primary transition-colors">Artırma</p>
+<p class="text-xs font-mono text-outline mt-1">40 → 41</p>
+</div>
+</div>
+<span class="font-mono text-sm text-on-surface-variant">14:18:30</span>
+</div>
+<!-- Ledger Item -->
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10 last:border-0 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-sm font-bold">remove</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Azaltma</p>
+<p class="text-xs font-mono text-outline mt-1">41 → 40</p>
+</div>
+</div>
+<span class="font-mono text-sm text-on-surface-variant">14:15:12</span>
+</div>
+<!-- Ledger Item -->
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10 last:border-0 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-sm">restart_alt</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Sıfırlama</p>
+<p class="text-xs font-mono text-outline mt-1">87 → 0</p>
+</div>
+</div>
+<span class="font-mono text-sm text-on-surface-variant">12:00:00</span>
+</div>
+<!-- Ledger Item -->
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10 last:border-0 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm font-bold">add</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface group-hover:text-primary transition-colors">Artırma</p>
+<p class="text-xs font-mono text-outline mt-1">86 → 87</p>
+</div>
+</div>
+<span class="font-mono text-sm text-on-surface-variant">11:45:22</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (MOBILE ONLY) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 md:hidden bg-[#0b1326]/80 backdrop-blur-xl font-['Inter'] text-[10px] font-medium uppercase tracking-widest rounded-t-2xl shadow-[0_-8px_32px_rgba(218,226,253,0.06)] border-t border-[#4a4455]/10">
+<a class="flex flex-col items-center justify-center bg-[#7C3AED]/10 text-[#7C3AED] rounded-xl px-4 py-1 Active: scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">add</span>
+            Artır
+        </a>
+<a class="flex flex-col items-center justify-center text-[#dae2fd]/40 hover:text-[#7C3AED]" href="#">
+<span class="material-symbols-outlined mb-1">remove</span>
+            Azalt
+        </a>
+<a class="flex flex-col items-center justify-center text-[#dae2fd]/40 hover:text-[#7C3AED]" href="#">
+<span class="material-symbols-outlined mb-1">restart_alt</span>
+            Sıfırla
+        </a>
+<a class="flex flex-col items-center justify-center text-[#dae2fd]/40 hover:text-[#7C3AED]" href="#">
+<span class="material-symbols-outlined mb-1">history</span>
+            Geçmiş
+        </a>
+</nav>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(74, 68, 85, 0.3);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(74, 68, 85, 0.5);
+        }
+    </style>
+</body></html>
