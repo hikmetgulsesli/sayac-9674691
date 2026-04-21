@@ -89,16 +89,41 @@ function BottomNavBar({ activeView, onNavigate }: { activeView: View; onNavigate
   )
 }
 
+function LimitWarningTooltip({ visible }: { visible: boolean }) {
+  if (!visible) return null
+  return (
+    <div className="absolute bottom-full mb-4 flex flex-col items-center z-50 animate-pulse">
+      <div className="bg-error-container text-on-error-container text-sm font-semibold px-5 py-2.5 rounded-xl whitespace-nowrap shadow-[0_16px_32px_rgba(255,180,171,0.15)] border border-error/20">
+        Maksimum sınıra ulaşıldı
+      </div>
+      <div className="w-4 h-4 bg-error-container rotate-45 -mt-2.5 rounded-sm border-r border-b border-error/20" />
+    </div>
+  )
+}
+
+function MobileLimitWarningTooltip({ visible }: { visible: boolean }) {
+  if (!visible) return null
+  return (
+    <div className="absolute bottom-full mb-5 flex flex-col items-center z-50">
+      <div className="bg-error-container text-on-error-container text-xs font-bold px-4 py-2 rounded-lg whitespace-nowrap shadow-[0_8px_24px_rgba(255,180,171,0.2)]">
+        Maksimum sınıra ulaşıldı
+      </div>
+      <div className="w-3 h-3 bg-error-container rotate-45 -mt-1.5 rounded-sm" />
+    </div>
+  )
+}
+
 export default function App() {
   const [view, setView] = useState<View>('counter')
-  const { count, increment, decrement, reset } = useCounter()
+  const { count, atMax, increment, decrement, reset } = useCounter()
   const { history, addEntry } = useHistory()
   const { theme, toggleTheme } = useTheme()
 
   const handleIncrement = useCallback(() => {
+    if (atMax) return
     increment()
     addEntry('increment', count + 1)
-  }, [increment, addEntry, count])
+  }, [increment, addEntry, count, atMax])
 
   const handleDecrement = useCallback(() => {
     decrement()
@@ -122,11 +147,29 @@ export default function App() {
             <div className="flex-1 flex flex-col items-center lg:items-start justify-center relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-container rounded-full mix-blend-screen filter blur-[100px] opacity-20 pointer-events-none" />
               <div className="relative z-10 flex flex-col items-center lg:items-start">
-                <Counter value={count} label="Aktif Değer">
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
-                    <CounterButton icon="add" label="Artır" onClick={handleIncrement} variant="primary" />
+                <Counter value={count} label={atMax ? undefined : "Aktif Değer"} className={atMax ? 'text-error drop-shadow-[0_0_64px_rgba(255,180,171,0.15)]' : 'text-primary drop-shadow-[0_0_40px_rgba(210,187,255,0.1)]'}>
+                  {atMax && (
+                    <div className="mb-8 font-mono text-error text-sm tracking-[0.3em] uppercase bg-error/10 px-4 py-1.5 rounded-[8px] border border-error/20">
+                      Kapasite Sınırı
+                    </div>
+                  )}
+                  {/* Desktop controls */}
+                  <div className="hidden md:flex flex-wrap justify-center lg:justify-start gap-4 w-full">
                     <CounterButton icon="remove" label="Azalt" onClick={handleDecrement} variant="secondary" />
                     <CounterButton icon="restart_alt" label="Sıfırla" onClick={handleReset} variant="outline" />
+                    <div className="relative">
+                      <LimitWarningTooltip visible={atMax} />
+                      <CounterButton icon="add" label="Artır" onClick={handleIncrement} variant="primary" disabled={atMax} />
+                    </div>
+                  </div>
+                  {/* Mobile controls */}
+                  <div className="flex md:hidden flex-wrap justify-center gap-4 w-full">
+                    <CounterButton icon="remove" label="Azalt" onClick={handleDecrement} variant="secondary" disabled={atMax} />
+                    <CounterButton icon="restart_alt" label="Sıfırla" onClick={handleReset} variant="outline" />
+                    <div className="relative">
+                      <MobileLimitWarningTooltip visible={atMax} />
+                      <CounterButton icon="add" label="Artır" onClick={handleIncrement} variant="primary" disabled={atMax} />
+                    </div>
                   </div>
                 </Counter>
               </div>
@@ -136,7 +179,7 @@ export default function App() {
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center px-6 pb-32 md:pb-12 z-10">
             <div className="mb-16 flex flex-col items-center">
-              <div className="text-[6rem] md:text-[8rem] font-black leading-none text-primary tracking-tighter drop-shadow-[0_0_40px_rgba(124,58,237,0.15)]">
+              <div className={`text-[6rem] md:text-[8rem] font-black leading-none tracking-tighter drop-shadow-[0_0_40px_rgba(124,58,237,0.15)] ${atMax ? 'text-error' : 'text-primary'}`}>
                 {count}
               </div>
               <div className="text-on-surface-variant font-label text-xs uppercase tracking-[0.3em] mt-4 font-medium opacity-70">
@@ -152,4 +195,3 @@ export default function App() {
     </div>
   )
 }
-
